@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2014 at 08:16 AM
+-- Generation Time: Jun 28, 2014 at 08:26 AM
 -- Server version: 5.5.32
 -- PHP Version: 5.4.19
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `pollingduck`
 --
-CREATE DATABASE IF NOT EXISTS `pollingduck` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `pollingduck`;
 
 -- --------------------------------------------------------
 
@@ -31,7 +29,7 @@ USE `pollingduck`;
 CREATE TABLE IF NOT EXISTS `category_tbl` (
   `cid` int(11) NOT NULL AUTO_INCREMENT,
   `category_name` varchar(100) NOT NULL,
-  `group` varchar(100) NOT NULL,
+  `group_name` varchar(100) NOT NULL,
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=566 ;
 
@@ -39,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `category_tbl` (
 -- Dumping data for table `category_tbl`
 --
 
-INSERT INTO `category_tbl` (`cid`, `category_name`, `group`) VALUES
+INSERT INTO `category_tbl` (`cid`, `category_name`, `group_name`) VALUES
 (1, '.NET', 'technology'),
 (2, '4D', 'technology'),
 (3, 'Active Directory', 'technology'),
@@ -605,214 +603,6 @@ INSERT INTO `category_tbl` (`cid`, `category_name`, `group`) VALUES
 (563, 'Stock Market', 'business and finance'),
 (564, 'Real Estate', 'business and finance'),
 (565, 'Banking', 'business and finance');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `login_tbl`
---
-
-CREATE TABLE IF NOT EXISTS `login_tbl` (
-  `uid` int(11) NOT NULL AUTO_INCREMENT,
-  `fb` varchar(50) NOT NULL,
-  `twitter` varchar(50) NOT NULL,
-  `gmail` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
-  PRIMARY KEY (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
-
---
--- Dumping data for table `login_tbl`
---
-
-INSERT INTO `login_tbl` (`uid`, `fb`, `twitter`, `gmail`, `email`) VALUES
-(1, 'taha.kachwala', '', '', 'taha.k@yellowkorp.com'),
-(2, 'user2', '', '', 'user2@user2.com'),
-(3, '', '', '', 'tejas@pd.com'),
-(4, '', '', '', 'seo@pd.com'),
-(5, '', '', '', 'taha@pd.com'),
-(6, '', '', '', 'bhushan@pd.com'),
-(7, '', '', '', 'sur@pd.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `poll_ans_tbl`
---
-
-CREATE TABLE IF NOT EXISTS `poll_ans_tbl` (
-  `poll_ans_key` int(11) NOT NULL AUTO_INCREMENT,
-  `pid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  `ans_json` varchar(1000) NOT NULL,
-  `solve_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`poll_ans_key`),
-  KEY `pid` (`pid`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
-
---
--- Dumping data for table `poll_ans_tbl`
---
-
-INSERT INTO `poll_ans_tbl` (`poll_ans_key`, `pid`, `uid`, `ans_json`, `solve_ts`) VALUES
-(1, 7, 2, '[[1,"momc",["1,1","2,2","3,2","3,3","3,4","4,3","5,5","5,6","6,4"]],[2,"moc",["1,1","2,2","3,3","4,5"]],[3,"mcms",[["2","3"]]],[4,"mcss",["2"]],[5,"tb",[["Taha","Kachwala"]]]]', '2014-04-10 10:31:04'),
-(2, 13, 2, '[[1,"mcms",[["2","3"]]],[2,"mcss",["1"]],[3,"moc",["1,1","2,2","3,3","4,3"]],[4,"momc",["1,1","2,2","3,3","4,1","4,2","5,2","6,3","7,2","8,1","9,2"]]]', '2014-04-23 09:43:26'),
-(3, 12, 2, '[[1,"mcms",[["3","4"]]],[2,"mcss",["5"]],[3,"tb",[["taha"]]]]', '2014-04-23 09:52:56'),
-(4, 12, 2, '[[1,"mcms",[["2","3","4"]]],[2,"mcss",["3"]],[3,"tb",[["taha sakina"]]]]', '2014-04-23 09:53:22'),
-(5, 10, 2, '[[1,"tb",[["taha"]]]]', '2014-04-23 09:53:32'),
-(6, 10, 2, '[[1,"tb",[["taha"]]]]', '2014-04-23 09:53:34'),
-(7, 10, 2, '[[1,"tb",[["taha"]]]]', '2014-04-23 09:53:43'),
-(8, 10, 2, '[[1,"tb",[["sur"]]]]', '2014-04-23 09:54:59'),
-(9, 10, 2, '[[1,"tb",[["ggg"]]]]', '2014-04-23 10:24:15'),
-(10, 10, 2, '[[1,"tb",[["hhhh"]]]]', '2014-04-23 10:25:08'),
-(11, 5, 2, '[[1,"momc",["1,1","2,2","2,3","3,3","4,4","4,5","5,5","6,6"]]]', '2014-04-23 10:33:03'),
-(12, 12, 2, '[[1,"mcms",[["1","2"]]],[2,"mcss",["3"]],[3,"tb",[["taha"]]]]', '2014-04-23 12:41:48'),
-(13, 12, 2, '[[1,"mcms",[["1","2","3"]]],[2,"mcss",["4"]],[3,"tb",[["taha"]]]]', '2014-04-23 12:42:17'),
-(14, 12, 2, '[[1,"mcms",[["1","2","3"]]],[2,"mcss",["4"]],[3,"tb",[["taha"]]]]', '2014-04-23 12:42:31'),
-(15, 12, 2, '[[1,"mcms",[["2","3","4"]]],[2,"mcss",["4"]],[3,"tb",[["sakina"]]]]', '2014-04-23 12:43:00'),
-(16, 8, 2, '[[1,"mcss",["1"]]]', '2014-04-23 12:55:57'),
-(17, 8, 2, '[[1,"mcss",["1"]]]', '2014-04-23 12:56:03'),
-(18, 8, 2, '[[1,"mcss",["2"]]]', '2014-04-23 12:56:09'),
-(19, 9, 2, '[[1,"mcms",[["1","2"]]]]', '2014-04-23 13:01:38'),
-(20, 9, 2, '[[1,"mcms",[["1"]]]]', '2014-04-23 13:01:46'),
-(21, 8, 2, '[[1,"mcss",["1"]]]', '2014-04-23 13:17:37'),
-(22, 9, 2, '[[1,"mcms",[["1","2","3"]]]]', '2014-04-23 13:17:44'),
-(23, 14, 2, '[[1,"mcss",["1"]],[2,"mcms",[["1","2"]]]]', '2014-04-23 13:29:11'),
-(24, 14, 2, '[[1,"mcss",["1"]],[2,"mcms",[["4","5"]]]]', '2014-04-23 13:29:39'),
-(25, 15, 1, '[[1,"mcss",["1"]]]', '2014-06-25 18:35:43');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `poll_tbl`
---
-
-CREATE TABLE IF NOT EXISTS `poll_tbl` (
-  `pid` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) NOT NULL,
-  `cid_json` varchar(30) NOT NULL,
-  `title` varchar(100) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `qtn_json` varchar(1000) NOT NULL,
-  `ans_json` varchar(1000) NOT NULL,
-  `poll_link` varchar(100) NOT NULL,
-  `start_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `end_ts` timestamp NULL DEFAULT NULL,
-  `reward` int(11) NOT NULL,
-  `poll_type` varchar(30) NOT NULL,
-  PRIMARY KEY (`pid`),
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=21 ;
-
---
--- Dumping data for table `poll_tbl`
---
-
-INSERT INTO `poll_tbl` (`pid`, `uid`, `cid_json`, `title`, `description`, `qtn_json`, `ans_json`, `poll_link`, `start_ts`, `end_ts`, `reward`, `poll_type`) VALUES
-(3, 1, '10', 'p1', 'p1', '[[1,"mcms","mcms"]]', '[[1,"o1\\no2\\no3\\no4",null]]', 'pollLink', '2014-06-24 11:31:46', '2014-04-09 09:34:06', 5, 'free'),
-(4, 1, '11', 'moc', 'moc', '[[1,"moc","moc qtn"]]', '[[1,"[[\\"\\",\\"c1\\",\\"c2\\",\\"c3\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\"]]"]]', 'pollLink', '2014-06-24 11:31:48', NULL, 5, 'free'),
-(5, 1, '12', 'momc', 'momc', '[[1,"momc","momc"]]', '[[1,"[[\\"\\",\\"c1\\",\\"c2\\",\\"c3\\",\\"c4\\",\\"c5\\",\\"c6\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r5\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r6\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"]]"]]', 'pollLink', '2014-06-24 11:31:50', NULL, 5, 'free'),
-(6, 1, '13', 'momc & moc', 'momc & MOC', '[[1,"momc","momc"],[2,"moc","moc"]]', '[[1,"[[\\"\\",\\"c1\\",\\"c2\\",\\"c3\\",\\"c4\\",\\"c5\\",\\"c6\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r5\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r6\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"]]"],[2,"[[\\"\\",\\"c1\\",\\"c2\\",\\"c3\\",\\"c4\\",\\"c5\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"]]"]]', 'pollLink', '2014-06-24 11:31:51', NULL, 5, 'free'),
-(7, 1, '14', 'All types', 'momc & MOC', '[[1,"momc","momc"],[2,"moc","moc"],[3,"mcms","mcms"],[4,"mcss","mcss"],[5,"tb","tb"]]', '[[1,"[[\\"\\",\\"c1\\",\\"c2\\",\\"c3\\",\\"c4\\",\\"c5\\",\\"c6\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r5\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r6\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"]]"],[2,"[[\\"\\",\\"c1\\",\\"c2\\",\\"c3\\",\\"c4\\",\\"c5\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\",\\"\\",\\"\\"]]"],[3,"opt1\\no2\\no3\\no4"],[4,"opt1\\no2\\no3\\no4"],[5,""]]', 'pollLink', '2014-06-24 11:31:52', NULL, 5, 'free'),
-(8, 1, '15', 'Multiple choice Single Select', 'mcss', '[[1,"mcss","mcss"]]', '[[1,"opt1\\nopt2\\nopt3''opt4"]]', 'pollLink', '2014-06-24 11:32:02', NULL, 5, 'free'),
-(9, 1, '1', 'multiple choice multiple select', 'mcms', '[[1,"mcms","mcms"]]', '[[1,"opt1\\nopt2\\nopt3"]]', 'pollLink', '2014-04-10 07:12:27', NULL, 5, 'free'),
-(10, 1, '1', 'tb', 'tb', '[[1,"tb","tb"]]', '[[1,""]]', 'pollLink', '2014-04-10 07:12:58', NULL, 5, 'free'),
-(11, 1, '1', 'mcss & mcms', 'mcss & mcms', '[[1,"mcms","mcms"],[2,"mcss","mcss"]]', '[[1,"o1\\no2\\no3\\no4\\no5"],[2,"o1\\no2\\no3\\no4\\no5\\no6"]]', 'pollLink', '2014-04-10 07:46:17', NULL, 5, 'free'),
-(12, 1, '100', 'mcss & mcms & tb', 'mcss & mcms & tb', '[[1,"mcms","mcms"],[2,"mcss","mcss"],[3,"tb","tb"]]', '[[1,"o1\\no2\\no3\\no4\\no5"],[2,"o1\\no2\\no3\\no4\\no5\\no6"],[3,""]]', 'pollLink', '2014-06-24 11:32:04', NULL, 5, 'free'),
-(13, 1, '1', 'newPoll', 'new Poll having everything', '[[1,"mcms","q1 mcms"],[2,"mcss","mcss"],[3,"moc","moc"],[4,"momc","momc"]]', '[[1,"a1\\na2\\na3\\na4"],[2,"a1\\na2\\na3\\na4"],[3,"[[\\"\\",\\"o1\\",\\"o2\\",\\"o3\\",\\"o4\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\",\\"\\"]]"],[4,"[[\\"\\",\\"c1\\",\\"c2\\",\\"c3\\"],[\\"r1\\",\\"\\",\\"\\",\\"\\"],[\\"r2\\",\\"\\",\\"\\",\\"\\"],[\\"r3\\",\\"\\",\\"\\",\\"\\"],[\\"r4\\",\\"\\",\\"\\",\\"\\"],[\\"r5\\",\\"\\",\\"\\",\\"\\"],[\\"r6\\",\\"\\",\\"\\",\\"\\"],[\\"r7\\",\\"\\",\\"\\",\\"\\"],[\\"r8\\",\\"\\",\\"\\",\\"\\"],[\\"r9\\",\\"\\",\\"\\",\\"\\"]]"]]', 'pollLink', '2014-04-23 09:42:30', NULL, 5, 'free'),
-(14, 1, '1', 'mcss & mcms', 'mcss & mcms', '[[1,"mcss","mcss qtn"],[2,"mcms","mcms qtn"]]', '[[1,"o1\\no2\\no3\\no4\\no5"],[2,"u1\\nu2\\nu3\\nu4\\nu5"]]', 'pollLink', '2014-04-23 13:28:52', NULL, 5, 'free'),
-(15, 1, '1', 'mom', 'mom', '[[1,"mcss","tata"]]', '[[1,"1\\n2\\n3\\n4\\n"]]', 'pollLink', '2014-06-21 13:05:54', NULL, 5, 'free'),
-(16, 1, '1,3,4', 'test with tags', 'test with tags', '[[1,"mcss","trying test with tags"]]', '[[1,"1\\n2\\n3\\n4"]]', 'pollLink', '2014-06-22 10:09:52', NULL, 5, 'free'),
-(18, 1, '95,141', 'taggs', 'taggs', '[[1,"mcss","tagged"]]', '[[1,"1\\n2\\n34\\n5"]]', 'pollLink', '2014-06-24 12:18:40', NULL, 5, 'free'),
-(19, 1, '1,2,3,4,95', 'plz chal jaa', 'uhih', '[[1,"mcss","df"]]', '[[1,"w\\ne\\nr\\n"]]', 'pollLink', '2014-06-24 18:54:59', NULL, 5, 'free'),
-(20, 1, '1,2,3', 'last one', 'last one', '[[1,"mcss","e"]]', '[[1,"1\\n2\\n3\\n4"]]', 'pollLink', '2014-06-24 20:13:01', NULL, 5, 'free');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_detail`
---
-
-CREATE TABLE IF NOT EXISTS `user_detail` (
-  `uid` int(11) NOT NULL,
-  `handle` varchar(15) NOT NULL,
-  `country` varchar(50) NOT NULL,
-  `state` varchar(50) NOT NULL,
-  `city` varchar(50) NOT NULL,
-  `zip` int(11) NOT NULL,
-  `religion` varchar(30) NOT NULL,
-  `sex` tinyint(1) NOT NULL,
-  `dob` date NOT NULL,
-  `phone` varchar(30) NOT NULL,
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_detail`
---
-
-INSERT INTO `user_detail` (`uid`, `handle`, `country`, `state`, `city`, `zip`, `religion`, `sex`, `dob`, `phone`) VALUES
-(1, 'taha', '', '', '', 0, '', 0, '0000-00-00', ''),
-(2, 'user2', '', '', '', 0, '', 0, '0000-00-00', ''),
-(3, 'tejas', '', '', '', 0, '', 0, '0000-00-00', '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_store`
---
-
-CREATE TABLE IF NOT EXISTS `user_store` (
-  `uid` int(11) NOT NULL,
-  `category_list_json` varchar(100) NOT NULL,
-  `exp_json` varchar(100) NOT NULL,
-  `fish` int(11) NOT NULL,
-  `lc` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  KEY `uid` (`uid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user_store`
---
-
-INSERT INTO `user_store` (`uid`, `category_list_json`, `exp_json`, `fish`, `lc`) VALUES
-(1, '[1,2,100,141]', '', 0, '2014-06-21 19:45:11'),
-(2, '[2,4,100,141]', '', 0, '2014-06-21 19:45:20'),
-(3, '[97,99,95]', '', 0, '2014-06-21 19:45:31'),
-(4, '[2,3,4]', '', 0, '2014-06-21 19:45:41'),
-(5, '[3,6,8]', '', 0, '2014-06-21 19:45:47'),
-(6, '[2,3,4]', '', 0, '2014-06-21 19:45:58'),
-(7, '[]', '', 0, '2014-06-21 19:46:03');
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `poll_ans_tbl`
---
-ALTER TABLE `poll_ans_tbl`
-  ADD CONSTRAINT `poll_ans_tbl_ibfk_1` FOREIGN KEY (`pid`) REFERENCES `poll_tbl` (`pid`),
-  ADD CONSTRAINT `poll_ans_tbl_ibfk_2` FOREIGN KEY (`uid`) REFERENCES `login_tbl` (`uid`);
-
---
--- Constraints for table `poll_tbl`
---
-ALTER TABLE `poll_tbl`
-  ADD CONSTRAINT `poll_tbl_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `login_tbl` (`uid`);
-
---
--- Constraints for table `user_detail`
---
-ALTER TABLE `user_detail`
-  ADD CONSTRAINT `user_detail_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `login_tbl` (`uid`);
-
---
--- Constraints for table `user_store`
---
-ALTER TABLE `user_store`
-  ADD CONSTRAINT `user_store_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `login_tbl` (`uid`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
